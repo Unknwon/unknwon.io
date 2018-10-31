@@ -1,0 +1,60 @@
+baseURL = "https://unknwon.io/"
+languageCode = "en-us"
+title = "UNKNWON"
+theme = "coder-portfolio"
+
+paginate = 20
+
+pygmentsUseClasses = true
+pygmentsstyle = "b2"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+disqusShortname = "landofunknown"
+
+[params]
+    author = "Jiahua Chen"
+    info = "Outside the body, inside the soul."
+    description = "Unknwon's personal website"
+    keywords = "blog,developer,personal"
+    avatarurl = "https://avatars2.githubusercontent.com/u/2946214?s=460&v=4"
+
+    # footercontent = "Enter a text here." # Add footer content
+    # fixedbarContent = "Do you want to know me more private?→" # Add fixedbar content
+    # fixedbarContentAfter = "Thank You! Please share it if you like it→" # Add fixedbar content after click
+
+    # Whether you want to hide copyright and credits in the footer.
+    hideCredits = false
+    hideCopyright = false
+
+    # Custom CSS
+    custom_css = []
+
+    # Alignment of Mobile Menu items
+    itemscentered = true
+
+    # snsShare = true # new add
+
+    # thumbnail = "images/tn.png" # default sns thumbnail
+
+[[params.social]]
+    name = "Github"
+    weight = 1
+    url = "https://github.com/Unknwon"
+[[params.social]]
+    name = "Twitter"
+    weight = 2
+    url = "https://twitter.com/jc_unknwon"
+[[params.social]]
+    name = "LinkedIn"
+    weight = 3
+    url = "https://www.linkedin.com/in/jiahua-chen-86218a81/"
+
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "posts"
+# [[menu.main]]
+#     name = "About"
+#     weight = 2
+#     url = "about"
