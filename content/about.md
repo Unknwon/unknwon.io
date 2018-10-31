@@ -5,4 +5,4 @@ draft: false
 ---
 
 ---
-Hi, my name is Jiahua Chen. I'm a software enginner.
+Welcome! My name is Jiahua Chen. I'm a software enginner.
