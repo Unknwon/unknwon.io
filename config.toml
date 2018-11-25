@@ -5,7 +5,7 @@ theme = "coder-portfolio"
 
 paginate = 20
 
-pygmentsUseClasses = true
+pygmentsUseClasses = false
 pygmentsstyle = "b2"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
@@ -28,7 +28,7 @@ disqusShortname = "landofunknown"
     hideCopyright = false
 
     # Custom CSS
-    custom_css = []
+    custom_css = ["css/custom.css"]
 
     # Alignment of Mobile Menu items
     itemscentered = true
