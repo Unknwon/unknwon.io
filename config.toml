@@ -1,27 +1,27 @@
 baseURL = "https://unknwon.io/"
-languageCode = "en-us"
 title = "UNKNWON"
-theme = "coder-portfolio"
+theme = "hugo-coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
 
 paginate = 20
+canonifyurls = true
 
-pygmentsUseClasses = false
-pygmentsstyle = "b2"
+pygmentsstyle = "friendly"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 disqusShortname = "landofunknown"
 
 [params]
-    author = "Jiahua Chen"
+    # author = "Unknwon"
     info = "Life is magic. Coding is art."
     description = "Unknwon's personal website"
     keywords = "blog,developer,personal"
     avatarurl = "https://avatars2.githubusercontent.com/u/2946214?s=460&v=4"
 
-    # footercontent = "Enter a text here." # Add footer content
-    # fixedbarContent = "Do you want to know me more private?→" # Add fixedbar content
-    # fixedbarContentAfter = "Thank You! Please share it if you like it→" # Add fixedbar content after click
+    favicon_32 = "/img/favicon.png"
+    favicon_16 = "/img/favicon.png"
 
     # Whether you want to hide copyright and credits in the footer.
     hideCredits = false
@@ -30,31 +30,27 @@ disqusShortname = "landofunknown"
     # Custom CSS
     custom_css = ["css/custom.css"]
 
-    # Alignment of Mobile Menu items
-    itemscentered = true
-
-    # snsShare = true # new add
-
-    # thumbnail = "images/tn.png" # default sns thumbnail
-
 [[params.social]]
-    name = "Github"
+    name = "GitHub"
+    icon = "fab fa-github fa-2x"
     weight = 1
-    url = "https://github.com/Unknwon"
+    url = "https://github.com/unknwon"
 [[params.social]]
     name = "Twitter"
+    icon = "fab fa-twitter fa-2x"
     weight = 2
     url = "https://twitter.com/jc_unknwon"
 [[params.social]]
     name = "LinkedIn"
+    icon = "fab fa-linkedin fa-2x"
     weight = 3
     url = "https://www.linkedin.com/in/jiahua-chen-86218a81/"
 
 [[menu.main]]
     name = "Blog"
     weight = 1
-    url  = "posts"
+    url  = "/posts/"
 [[menu.main]]
     name = "About"
     weight = 2
-    url = "about"
+    url = "/about/"
