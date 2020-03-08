@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', 'PT Sans', 'Open Sans';
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     line-height: 1.5em;
 }
@@ -8,6 +8,7 @@ code {
     font-weight: 400;
     background-color: inherit !important; 
     color: #e83e8c;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
 }
 
 a code {

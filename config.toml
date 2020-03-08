@@ -1,5 +1,5 @@
 baseURL = "https://unknwon.io/"
-title = "UNKNWON"
+title = "ᴜɴᴋɴᴡᴏɴ"
 theme = "hugo-coder"
 languagecode = "en"
 defaultcontentlanguage = "en"
@@ -14,14 +14,14 @@ pygmentscodefencesguesssyntax = true
 disqusShortname = "landofunknown"
 
 [params]
-    # author = "Unknwon"
-    info = "Life is magic. Coding is art."
-    description = "Unknwon's personal website"
+    # author = "ᴜɴᴋɴᴡᴏɴ"
+    info = "ʟɪғᴇ ɪs ᴍᴀɢɪᴄ. ᴄᴏᴅɪɴɢ ɪs ᴀʀᴛ."
+    description = "ᴜɴᴋɴᴡᴏɴ's personal website"
     keywords = "blog,developer,personal"
-    avatarurl = "https://avatars2.githubusercontent.com/u/2946214?s=460&v=4"
 
-    favicon_32 = "/img/favicon.png"
-    favicon_16 = "/img/favicon.png"
+    avatarurl  = "https://avatars2.githubusercontent.com/u/2946214?s=460&v=4"
+    favicon_32 = "https://avatars2.githubusercontent.com/u/2946214?s=460&v=4"
+    favicon_16 = "https://avatars2.githubusercontent.com/u/2946214?s=460&v=4"
 
     # Whether you want to hide copyright and credits in the footer.
     hideCredits = false
