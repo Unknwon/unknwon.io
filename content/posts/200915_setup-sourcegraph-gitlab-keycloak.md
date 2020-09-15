@@ -202,9 +202,11 @@ All the same for the first GitLab except this time using `gitlab-2`.
 
 ### Create a Keycloak client
 
-Because I'm using a local Sourcegraph instance, just import [this JSON file](https://github.com/sourcegraph/sourcegraph/blob/59bfb598a2e7428d2fd28fac8917857f9b263886/dev/auth-provider/config/client-saml.json) and you're done:
+Because I'm using a local Sourcegraph instance, so the URL is pointing to localhost:
 
-![](/img/200915/keycloak_sourcegraph.png)
+![](/img/200915/keycloak_sourcegraph_1.png)
+
+![](/img/200915/keycloak_sourcegraph_2.png)
 
 ### Configure SAML auth provider
 
