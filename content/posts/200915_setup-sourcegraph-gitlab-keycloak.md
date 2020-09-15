@@ -161,7 +161,7 @@ gitlab_rails['omniauth_providers'] = [
     name: 'saml',
     args: {
         assertion_consumer_service_url: 'https://gitlab-1.example.com/users/auth/saml/callback',
-        idp_cert_fingerprint: <REDACTED>,
+        idp_cert_fingerprint: '<REDACTED>',
         idp_sso_target_url: 'https://keycloak.example.com/auth/realms/master/protocol/saml/clients/gitlab-1.example.com',
         issuer: 'https://gitlab-1.example.com',
         name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
@@ -216,10 +216,55 @@ In **Site admin > Site configuration**, add following field:
     ...
     {
       "type": "saml",
+      "configID": "keycloak",
       "identityProviderMetadataURL": "https://keycloak.example.com/auth/realms/master/protocol/saml/descriptor"
     }
   ]
 ...
+```
+
+### Add repositories from two GitLab
+
+There are [many ways to add repositories from GitLab to Sourcegraph](https://docs.sourcegraph.com/admin/repo/permissions#gitlab), here I choose to use [Sudo access token](https://docs.sourcegraph.com/admin/repo/permissions#administrator-sudo-level-access-token).
+
+Add code host connection for the _first_ GitLab:
+
+```json
+{
+  "url": "https://gitlab-1.example.com",
+  "token": "<REDACTED>",
+  "projectQuery": [
+    "projects?membership=true&archived=no"
+  ],
+  "authorization": {
+    "identityProvider": {
+      "type": "external",
+      "authProviderID": "keycloak",
+      "authProviderType": "saml",
+      "gitlabProvider": "saml"
+    }
+  }
+}
+```
+
+Add code host connection for the _second_ GitLab:
+
+```json
+{
+  "url": "https://gitlab-2.example.com",
+  "token": "<REDACTED>",
+  "projectQuery": [
+    "projects?membership=true&archived=no"
+  ],
+  "authorization": {
+    "identityProvider": {
+      "type": "external",
+      "authProviderID": "keycloak",
+      "authProviderType": "saml",
+      "gitlabProvider": "saml"
+    }
+  }
+}
 ```
 
 ## References
