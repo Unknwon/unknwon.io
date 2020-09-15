@@ -88,7 +88,7 @@ Now calculate this formatted X.509 certificate using [SAML X.509 Certificate Fin
 
 Save the fingerprint for later.
 
-## Set up the first GitLab
+## Set up the _first_ GitLab
 
 1. Create a VM using **Ubuntu 20.04**, machine type **e2-medium (2 vCPUs, 4 GB memory)**, and **10 GB SSD**.
 2. Follow the offical guide of [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/).
@@ -118,9 +118,26 @@ $ sudo docker run --detach \
 
 ### Create a Keycloak client
 
+**Settings:**
+
 ![](/img/200915/keycloak_gitlab_1_1.png)
 
 ![](/img/200915/keycloak_gitlab_1_2.png)
+
+**Mappers:**
+
+- Name: `name`
+    - Mapper Type: `User Property`
+    - Property: `Username`
+    - Friendly Name: `Username`
+    - SAML Attribute Name: `name`
+    - SAML Attribute NameFormat: `Basic`
+- Name: `email`
+    - Mapper Type: `User Property`
+    - Property: `Email`
+    - Friendly Name: `Email`
+    - SAML Attribute Name: `email`
+    - SAML Attribute NameFormat: `Basic`
 
 ### Configure SAML OmniAuth Provider
 
@@ -153,7 +170,7 @@ gitlab_rails['omniauth_providers'] = [
 ]
 ```
 
-- `idp_cert_fingerprint`: The X.509 certificate fingerprint we calculated from Keycloak section.
+**NOTE:** The value of `idp_cert_fingerprint` is the X.509 certificate fingerprint we calculated from Keycloak section.
 
 Restart the GitLab container:
 
@@ -162,6 +179,72 @@ $ sudo docker restart gitlab
 ```
 
 _It takes painfully long to wait for GitLab to come up and able to serve user requests._
+
+### Install and configure Caddy
+
+All the same as for Keycloak except:
+
+```sh
+...
+
+gitlab-1.example.com {
+    reverse_proxy * localhost:8080
+}
+
+...
+```
+
+## Set up the _second_ GitLab
+
+1. Create a VM using **Ubuntu 20.04**, machine type **e2-medium (2 vCPUs, 4 GB memory)**, and **10 GB SSD**.
+2. Follow the offical guide of [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/).
+3. Add a DNS A record to resolve a subdomain to this GCP VM, here I use `gitlab-2.example.com`.
+
+### Bootstrap GitLab
+
+Set up the volumes location:
+
+```sh 
+$ export GITLAB_HOME=/srv/gitlab
+```
+
+Run the following command to start a GitLab Docker container:
+
+```sh
+$ sudo docker run --detach \
+    --hostname gitlab-2.example.com \
+    --publish 8080:80 \
+    --name gitlab \
+    --restart always \
+    --volume $GITLAB_HOME/config:/etc/gitlab \
+    --volume $GITLAB_HOME/logs:/var/log/gitlab \
+    --volume $GITLAB_HOME/data:/var/opt/gitlab \
+    gitlab/gitlab-ee:latest
+```
+
+### Create another Keycloak client
+
+All the same for the first GitLab except this time using `gitlab-2`.
+
+### Configure SAML OmniAuth Provider
+
+All the same for the first GitLab except this time using `gitlab-2`.
+
+_It takes painfully long to wait for GitLab to come up and able to serve user requests._
+
+### Install and configure Caddy
+
+All the same as for Keycloak except:
+
+```sh
+...
+
+gitlab-2.example.com {
+    reverse_proxy * localhost:8080
+}
+
+...
+```
 
 TBD
 
