@@ -200,7 +200,27 @@ All the same for the first GitLab except this time using `gitlab-2`.
 
 ## Set up Sourcegraph
 
-TBD
+### Create a Keycloak client
+
+Because I'm using a local Sourcegraph instance, just import [this JSON file](https://github.com/sourcegraph/sourcegraph/blob/59bfb598a2e7428d2fd28fac8917857f9b263886/dev/auth-provider/config/client-saml.json) and you're done:
+
+![](/img/200915/keycloak_sourcegraph.png)
+
+### Configure SAML auth provider
+
+In **Site admin > Site configuration**, add following field:
+
+```json
+...
+  "auth.providers": [
+    ...
+    {
+      "type": "saml",
+      "identityProviderMetadataURL": "https://keycloak.example.com/auth/realms/master/protocol/saml/descriptor"
+    }
+  ]
+...
+```
 
 ## References
 
@@ -208,3 +228,4 @@ TBD
 - [GitLab Docker images](https://docs.gitlab.com/omnibus/docker/)
 - [GitLab Docs > GitLab integrations > OmniAuth](https://docs.gitlab.com/ee/integration/omniauth.html)
 - [GitLab Docs > GitLab integrations > SAML OmniAuth Provider](https://docs.gitlab.com/ee/integration/saml.html)
+- [Sourcegraph Docs > Configuring SAML](https://docs.sourcegraph.com/admin/auth/saml/generic)
