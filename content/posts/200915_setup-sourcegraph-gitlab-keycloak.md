@@ -84,7 +84,7 @@ In the XML, you will find something like `<ds:X509Certificate>MIICmz...</ds:X509
 
 Then format this X.509 certificate using [X.509 Certificate Format Online Tool](https://www.samltool.com/format_x509cert.php), which effectively adds `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` as the first and the last line.
 
-Now calculate this formatted X.509 certificate using [SAML X.509 Certificate Fingerprint](https://www.samltool.com/fingerprint.php).
+Now calculate this formatted X.509 certificate using [SAML X.509 Certificate Fingerprint](https://www.samltool.com/fingerprint.php), make sure you're using SHA1 as the algorithm.
 
 Save the fingerprint for later.
 
@@ -116,6 +116,12 @@ $ sudo docker run --detach \
     gitlab/gitlab-ee:latest
 ```
 
+### Create a Keycloak client
+
+![](/img/200915/keycloak_gitlab_1_1.png)
+
+![](/img/200915/keycloak_gitlab_1_2.png)
+
 ### Configure SAML OmniAuth Provider
 
 Edit the configuration file and update "OmniAuth Settings":
@@ -137,15 +143,17 @@ gitlab_rails['omniauth_providers'] = [
   {
     name: 'saml',
     args: {
-      assertion_consumer_service_url: 'https://gitlab-1.example.com/users/auth/saml/callback',
-             idp_cert_fingerprint: <REDACTED>,
-             idp_sso_target_url: 'https://keycloak.example.com/auth/realms/master/protocol/saml/clients/gitlab-1.example.com',
-             issuer: 'https://gitlab-1.example.com',
-             name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
-           },
+        assertion_consumer_service_url: 'https://gitlab-1.example.com/users/auth/saml/callback',
+        idp_cert_fingerprint: <REDACTED>,
+        idp_sso_target_url: 'https://keycloak.example.com/auth/realms/master/protocol/saml/clients/gitlab-1.example.com',
+        issuer: 'https://gitlab-1.example.com',
+        name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'
+    },
   }
 ]
 ```
+
+- `idp_cert_fingerprint`: The X.509 certificate fingerprint we calculated from Keycloak section.
 
 Restart the GitLab container:
 
@@ -154,6 +162,8 @@ $ sudo docker restart gitlab
 ```
 
 _It takes painfully long to wait for GitLab to come up and able to serve user requests._
+
+TBD
 
 ## References
 
