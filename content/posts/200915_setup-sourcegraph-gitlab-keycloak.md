@@ -76,7 +76,7 @@ Don't forget to set the initial password for the account.
 
 GitLab SAML uses X.509 certificate fingerprint to avoid admin entering the long and verbose body, but it actually adds more work when I try to figure out how to generate one for Keycloak.
 
-First, clock on the SAML endpoint and get the XML:
+First, click on the SAML endpoint and get the XML:
 
 ![](/img/200915/keycloak_saml_endpoint.png)
 
