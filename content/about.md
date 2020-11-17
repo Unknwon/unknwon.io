@@ -7,7 +7,7 @@ draft: false
 ---
 Welcome!
 
-I'm a software engineer at [Sourcegraph](https://sourcegraph.com) who emphasizes on good design and code quality. 
+I'm a software engineer who emphasizes on good design and code quality. 
 
 I love using Go and did a lot work with it, some of them including:
 
